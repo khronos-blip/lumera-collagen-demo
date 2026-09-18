@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LUMERA — ritual diario de péptidos de colágeno, vitamina C y ácido hialurónico. Una demo editorial de belleza y bienestar.">
+  <meta name="theme-color" content="#f4f0e7">
+  <meta property="og:title" content="LUMERA — Belleza que empieza en el ritual">
+  <meta property="og:description" content="Colágeno hidrolizado con una fórmula transparente para tu rutina diaria.">
+  <meta property="og:type" content="website">
+  <title>LUMERA — Colágeno, elevado a ritual</title>
+  <style>
+    :root {
+      --ink:#172e2a;
+      --ink-2:#3f5550;
+      --paper:#f4f0e7;
+      --paper-2:#ebe4d6;
+      --lime:#d8ff68;
+      --lime-deep:#b9e73e;
+      --sun:#ff9b54;
+      --white:#fffdf8;
+      --line:rgba(23,46,42,.18);
+      --shadow:0 28px 70px rgba(28,48,43,.16);
+      --serif:"Iowan Old Style","Baskerville","Times New Roman",serif;
+      --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --max:1200px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;overflow-x:hidden}
+    body.cart-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    button,a{ -webkit-tap-highlight-color:transparent }
+    :focus-visible{outline:3px solid var(--sun);outline-offset:4px}
+    .skip{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 15px;background:var(--ink);color:white;transform:translateY(-160%)}
+    .skip:focus{transform:none}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}
+    .eyebrow{display:flex;align-items:center;gap:10px;text-transform:uppercase;font-size:.72rem;line-height:1;letter-spacing:.17em;font-weight:800}
+    .eyebrow::before{content:"";width:34px;height:2px;background:currentColor}
+    .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid currentColor;border-radius:999px;padding:7px 11px;font-size:.72rem;font-weight:750;letter-spacing:.07em;text-transform:uppercase}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.05em;line-height:.94}
+    h1{font-size:clamp(3.6rem,9vw,8.5rem);margin-bottom:26px;max-width:890px}
+    h2{font-size:clamp(2.8rem,6vw,5.8rem);margin-bottom:26px}
+    h3{font-size:1.15rem;line-height:1.25}
+    .btn{border:1px solid var(--ink);border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:52px;padding:12px 22px;background:var(--ink);color:var(--white);font-weight:750;cursor:pointer;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(23,46,42,.18)}
+    .btn--acid{background:var(--lime);color:var(--ink)}
+    .btn--ghost{background:transparent;color:var(--ink)}
+    .btn--light{background:var(--white);color:var(--ink);border-color:var(--white)}
+    .icon-arrow{font-size:1.2em;transition:transform .2s ease}.btn:hover .icon-arrow{transform:translateX(4px)}
+
+    .announcement{background:var(--ink);color:var(--white);text-align:center;padding:9px 16px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
+    header{position:sticky;top:0;z-index:40;background:rgba(244,240,231,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    nav{height:74px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+    .nav-links{display:flex;gap:27px;align-items:center;font-size:.84rem;font-weight:650}
+    .nav-links a{position:relative}.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:var(--ink);transition:right .2s}.nav-links a:hover::after{right:0}
+    .logo{font-size:1.35rem;font-weight:900;letter-spacing:.25em;margin-left:.25em}
+    .nav-actions{justify-self:end;display:flex;gap:10px;align-items:center}
+    .cart-btn,.menu-btn{border:0;background:transparent;color:var(--ink);padding:10px;cursor:pointer;font-weight:750}
+    .cart-count{display:inline-grid;place-items:center;margin-left:5px;background:var(--lime);width:23px;height:23px;border-radius:50%;font-size:.72rem}
+    .menu-btn{display:none;font-size:1.35rem}
+
+    .hero{position:relative;min-height:calc(100svh - 106px);display:flex;align-items:center;padding:70px 0 80px;isolation:isolate;overflow:hidden}
+    .hero::before{content:"";position:absolute;width:540px;height:540px;border-radius:50%;background:var(--lime);filter:blur(1px);top:-210px;right:-150px;z-index:-2}
+    .hero::after{content:"PURE / DAILY / RADIANT";position:absolute;right:-70px;bottom:120px;font-size:.66rem;letter-spacing:.35em;font-weight:800;transform:rotate(90deg)}
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:42px;align-items:center}
+    .hero-copy{position:relative;z-index:2}.hero-copy h1 em{font-weight:400;color:var(--sun)}
+    .hero-lead{font-size:clamp(1rem,1.6vw,1.25rem);max-width:560px;color:var(--ink-2);margin-bottom:32px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-note{font-size:.72rem;color:var(--ink-2);margin:18px 0 0}
+    .product-stage{min-height:600px;position:relative;display:grid;place-items:center}
+    .orb{position:absolute;width:430px;height:430px;border-radius:50%;background:linear-gradient(135deg,var(--sun),#ffc889 70%);box-shadow:inset -35px -35px 70px rgba(139,65,16,.12)}
+    .orbit-text{position:absolute;width:510px;height:510px;animation:spin 28s linear infinite}
+    .orbit-text svg{width:100%;height:100%;overflow:visible}.orbit-text text{font:700 10px var(--sans);letter-spacing:5.6px;fill:var(--ink)}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+    .jar{position:relative;width:245px;height:345px;z-index:2;filter:drop-shadow(0 35px 28px rgba(50,54,35,.28));transform:rotate(-4deg);transition:transform .4s ease}
+    .product-stage:hover .jar{transform:rotate(0) translateY(-8px)}
+    .jar-lid{width:210px;height:58px;margin:auto;border-radius:17px 17px 8px 8px;background:repeating-linear-gradient(90deg,#d7d3c8 0 5px,#f7f4ec 5px 9px);border:1px solid rgba(23,46,42,.18);position:relative;z-index:2}
+    .jar-body{width:245px;height:296px;margin-top:-9px;border-radius:35px 35px 54px 54px;background:linear-gradient(100deg,#efeee5,#fffdf7 47%,#dedbd0);border:1px solid rgba(23,46,42,.2);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}
+    .jar-body::after{content:"";position:absolute;width:40px;height:100%;background:rgba(255,255,255,.55);filter:blur(8px);left:26px;top:0;transform:skewX(-8deg)}
+    .label{width:100%;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:28px 12px;position:relative}.label b{display:block;letter-spacing:.22em;font-size:1.15rem}.label span{display:block;font-family:var(--serif);font-size:1.5rem;line-height:1;margin:16px 0}.label small{font-size:.55rem;letter-spacing:.12em;text-transform:uppercase}
+    .floating-card{position:absolute;z-index:3;background:rgba(255,253,248,.88);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.7);box-shadow:var(--shadow);padding:17px 19px;border-radius:16px;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+    .floating-card.one{top:17%;right:-1%}.floating-card.two{left:-4%;bottom:18%}.floating-card i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--lime-deep);margin-right:8px}
+
+    .ticker{overflow:hidden;background:var(--lime);border-block:1px solid var(--ink);padding:14px 0;white-space:nowrap}
+    .ticker-track{display:inline-flex;gap:32px;min-width:max-content;animation:marquee 24s linear infinite;font-weight:800;text-transform:uppercase;font-size:.78rem;letter-spacing:.1em}.ticker-track span::after{content:"✦";margin-left:32px}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+
+    section{padding:110px 0}.section-head{display:grid;grid-template-columns:.55fr 1fr;gap:40px;align-items:start;margin-bottom:65px}.section-head p{max-width:510px;color:var(--ink-2);font-size:1.05rem}
+    .benefits{background:var(--white)}
+    .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+    .benefit{padding:34px 30px 38px 0;border-bottom:1px solid var(--line);min-height:250px;display:flex;flex-direction:column;justify-content:space-between}.benefit:not(:nth-child(3n+1)){padding-left:30px;border-left:1px solid var(--line)}
+    .benefit-num{font-family:var(--serif);font-style:italic;font-size:2rem;color:var(--sun)}.benefit p{color:var(--ink-2);margin:0;max-width:320px}.benefit h3{font-family:var(--serif);font-size:2rem;font-weight:400;margin-bottom:12px}
+
+    .formula{background:var(--ink);color:var(--white);overflow:hidden}.formula .eyebrow,.formula .section-head p{color:#cad4d1}.formula-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+    .formula-visual{aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f6f2e8 0 12%,#d8ff68 13% 34%,#ff9b54 35% 54%,#28433d 55% 100%);position:relative;box-shadow:0 0 0 20px rgba(255,255,255,.04),0 0 0 42px rgba(255,255,255,.025)}
+    .formula-visual::after{content:"FORMULADO SIN ATAJOS";position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--ink);font-weight:900;font-size:clamp(1rem,2vw,1.45rem);letter-spacing:.13em;width:150px;margin:auto}
+    .ingredients{border-top:1px solid rgba(255,255,255,.2)}
+    .ingredient{display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:center;padding:24px 0;border-bottom:1px solid rgba(255,255,255,.2)}.ingredient strong{font-size:1.07rem}.ingredient p{font-size:.86rem;color:#cad4d1;margin:0}.ingredient span{font-family:var(--serif);font-style:italic;color:var(--lime);font-size:1.1rem}
+    .transparency{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}.transparency .pill{color:#dbe3e0}
+
+    .ritual{position:relative}.ritual-layout{display:grid;grid-template-columns:.75fr 1.25fr;gap:80px;align-items:start}.ritual-sticky{position:sticky;top:130px}.ritual-sticky p{color:var(--ink-2);max-width:390px}
+    .steps{counter-reset:ritual}.step{counter-increment:ritual;display:grid;grid-template-columns:74px 1fr;gap:24px;border-top:1px solid var(--line);padding:34px 0}.step:last-child{border-bottom:1px solid var(--line)}.step::before{content:"0" counter(ritual);font-family:var(--serif);font-size:2.8rem;color:var(--sun);line-height:1}.step h3{font-family:var(--serif);font-size:2rem;font-weight:400;margin-bottom:10px}.step p{color:var(--ink-2);margin:0}
+
+    .expectations{background:var(--paper-2)}.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.time-card{background:var(--white);padding:34px;border-radius:22px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid transparent;transition:transform .2s,border-color .2s}.time-card:hover{transform:translateY(-5px);border-color:var(--ink)}.time-card .when{font-family:var(--serif);font-size:2.7rem;line-height:1}.time-card p{color:var(--ink-2);margin:0}.expectation-note{font-size:.76rem;color:var(--ink-2);margin-top:24px;max-width:800px}
+
+    .voices{background:var(--white)}.demo-flag{background:var(--sun);padding:7px 10px;border-radius:99px;font-size:.66rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.voice-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:16px}.quote{border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;min-height:315px}.quote:first-child{background:var(--lime)}.quote blockquote{font-family:var(--serif);font-size:clamp(1.35rem,2.4vw,2.2rem);line-height:1.15;margin:0 0 30px}.quote:not(:first-child) blockquote{font-size:1.35rem}.quote footer{display:flex;gap:12px;align-items:center;font-size:.8rem}.avatar{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--white);display:grid;place-items:center;font-weight:800}.quote small{display:block;color:var(--ink-2)}
+
+    .shop{background:var(--paper)}.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.product-card{background:var(--white);border:1px solid var(--line);border-radius:24px;overflow:hidden;position:relative;transition:transform .25s,box-shadow .25s}.product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}.product-card.featured{border:2px solid var(--ink)}.badge{position:absolute;top:17px;left:17px;z-index:2;background:var(--ink);color:var(--white);font-size:.67rem;font-weight:850;text-transform:uppercase;letter-spacing:.1em;padding:7px 10px;border-radius:99px}.card-art{height:310px;background:var(--paper-2);display:grid;place-items:center;position:relative;overflow:hidden}.card-art::before{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:var(--accent,var(--lime));opacity:.95}.mini-jar{width:112px;height:160px;background:linear-gradient(100deg,#e6e3d9,#fff);border:1px solid var(--line);border-radius:16px 16px 27px 27px;z-index:1;display:grid;place-items:center;text-align:center;filter:drop-shadow(0 18px 14px rgba(23,46,42,.2));font-size:.58rem;font-weight:900;letter-spacing:.16em;line-height:1.5}.mini-jar::before{content:"";position:absolute;width:96px;height:27px;background:repeating-linear-gradient(90deg,#d8d4c9 0 4px,#f8f5ed 4px 7px);top:-15px;border-radius:8px}.mini-jar.two::after{content:"";position:absolute;width:112px;height:160px;background:inherit;border:inherit;border-radius:inherit;transform:translateX(55px);z-index:-1}.mini-jar.three::after{content:"× 3";position:absolute;right:-72px;font-size:1.4rem}.card-info{padding:26px}.card-info h3{font-family:var(--serif);font-size:1.8rem;font-weight:400;margin-bottom:7px}.card-info p{color:var(--ink-2);font-size:.86rem;min-height:45px}.price-row{display:flex;align-items:end;justify-content:space-between;margin:20px 0}.price{font-size:1.5rem;font-weight:850}.price small{font-size:.72rem;font-weight:500;color:var(--ink-2)}.save{color:#3e6810;font-weight:800;font-size:.74rem}.card-info .btn{width:100%}
+
+    .faq-layout{display:grid;grid-template-columns:.65fr 1.35fr;gap:80px}.faq-intro p{color:var(--ink-2)}details{border-top:1px solid var(--line);padding:22px 0}details:last-child{border-bottom:1px solid var(--line)}summary{font-family:var(--serif);font-size:1.45rem;list-style:none;cursor:pointer;padding-right:40px;position:relative}summary::-webkit-details-marker{display:none}summary::after{content:"+";position:absolute;right:5px;top:-3px;font-family:var(--sans);font-size:1.6rem}details[open] summary::after{content:"−"}details p{color:var(--ink-2);max-width:660px;margin:15px 0 3px}
+
+    .final-cta{padding-top:20px}.cta-panel{background:var(--sun);border-radius:32px;padding:clamp(38px,7vw,90px);display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;position:relative;overflow:hidden}.cta-panel::before{content:"L";position:absolute;right:18%;top:-75%;font-family:var(--serif);font-size:450px;color:rgba(255,255,255,.17);pointer-events:none}.cta-panel h2{max-width:760px;margin:0;position:relative}.cta-panel .btn{position:relative}
+    .site-footer{padding:70px 0 30px}.footer-top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:50px;padding-bottom:60px}.footer-brand p{color:var(--ink-2);max-width:340px}.footer-col strong{display:block;margin-bottom:16px;font-size:.75rem;text-transform:uppercase;letter-spacing:.12em}.footer-col a{display:block;color:var(--ink-2);margin:8px 0;width:max-content}.footer-col a:hover{color:var(--ink)}.footer-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;gap:20px;font-size:.72rem;color:var(--ink-2)}
+
+    .overlay{position:fixed;inset:0;background:rgba(8,22,19,.48);z-index:90;opacity:0;visibility:hidden;transition:.25s}.overlay.active{opacity:1;visibility:visible}.cart{position:fixed;right:0;top:0;bottom:0;width:min(470px,100%);z-index:100;background:var(--white);transform:translateX(100%);transition:transform .35s cubic-bezier(.22,.8,.2,1);display:grid;grid-template-rows:auto 1fr auto;box-shadow:-20px 0 60px rgba(0,0,0,.16)}.cart.open{transform:none}.cart-head{display:flex;align-items:center;justify-content:space-between;padding:23px 25px;border-bottom:1px solid var(--line)}.cart-head h2{font-family:var(--sans);font-size:1rem;letter-spacing:.08em;font-weight:850;margin:0;text-transform:uppercase}.close-cart{border:0;background:transparent;font-size:1.7rem;cursor:pointer;color:var(--ink);padding:4px 8px}.cart-items{padding:20px 25px;overflow:auto}.cart-empty{text-align:center;padding:80px 20px;color:var(--ink-2)}.cart-item{display:grid;grid-template-columns:78px 1fr auto;gap:14px;padding:17px 0;border-bottom:1px solid var(--line);align-items:center}.cart-thumb{height:88px;border-radius:12px;background:var(--paper-2);display:grid;place-items:center;font-weight:900;font-size:.65rem}.cart-item h3{font-size:.92rem;margin:0 0 4px}.cart-item p{font-size:.82rem;color:var(--ink-2);margin:0}.remove{border:0;background:transparent;text-decoration:underline;font-size:.72rem;color:var(--ink-2);cursor:pointer;padding:5px}.cart-foot{padding:20px 25px 25px;border-top:1px solid var(--line);background:var(--white)}.subtotal{display:flex;justify-content:space-between;font-weight:850;margin-bottom:15px}.cart-foot .btn{width:100%}.cart-demo{font-size:.68rem;color:var(--ink-2);text-align:center;margin:10px 0 0}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);background:var(--ink);color:var(--white);z-index:120;padding:12px 18px;border-radius:99px;font-size:.82rem;font-weight:700;opacity:0;visibility:hidden;transition:.25s}.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+    @media(max-width:950px){
+      .hero-grid,.formula-grid,.ritual-layout{grid-template-columns:1fr}.hero{padding-top:55px}.hero-copy{text-align:center}.hero-copy h1,.hero-lead{margin-inline:auto}.hero-actions{justify-content:center}.product-stage{min-height:540px}.section-head{grid-template-columns:1fr}.benefit-grid{grid-template-columns:repeat(2,1fr)}.benefit:not(:nth-child(3n+1)){padding-left:0;border-left:0}.benefit:nth-child(even){padding-left:28px;border-left:1px solid var(--line)}.formula-visual{max-width:520px;margin:auto}.ritual-layout{gap:35px}.ritual-sticky{position:static}.timeline,.shop-grid{grid-template-columns:1fr 1fr}.shop-grid .product-card:last-child{grid-column:1/-1;max-width:570px;width:100%;justify-self:center}.voice-grid{grid-template-columns:1fr 1fr}.quote:first-child{grid-column:1/-1}.faq-layout{grid-template-columns:1fr;gap:30px}.cta-panel{grid-template-columns:1fr;align-items:start}
+    }
+    @media(max-width:720px){
+      .wrap{width:min(100% - 28px,var(--max))}.announcement{font-size:.65rem}.nav-links{display:none;position:absolute;top:74px;left:0;right:0;background:var(--paper);padding:25px;flex-direction:column;border-bottom:1px solid var(--line)}.nav-links.open{display:flex}.menu-btn{display:block}.nav-actions .btn{display:none}nav{grid-template-columns:auto 1fr auto}.logo{justify-self:center}.hero::after,.orbit-text{display:none}.hero{min-height:auto}.hero-grid{gap:15px}.product-stage{min-height:430px}.orb{width:330px;height:330px}.jar{transform:scale(.82) rotate(-4deg)}.floating-card.one{right:0;top:12%}.floating-card.two{left:0;bottom:12%}section{padding:76px 0}.section-head{margin-bottom:42px}.benefit-grid,.timeline,.shop-grid,.voice-grid{grid-template-columns:1fr}.benefit,.benefit:nth-child(even),.benefit:not(:nth-child(3n+1)){padding:28px 0;border-left:0}.ingredient{grid-template-columns:65px 1fr}.ingredient span{grid-column:2}.time-card{min-height:245px}.shop-grid .product-card:last-child,.quote:first-child{grid-column:auto}.card-art{height:250px}.footer-top{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column}.cta-panel{border-radius:20px}.cart-item{grid-template-columns:68px 1fr auto}
+    }
+    @media(max-width:400px){h1{font-size:3.15rem}.hero-actions .btn{width:100%}.floating-card{font-size:.61rem}.footer-top{grid-template-columns:1fr}.footer-brand{grid-column:auto}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <div class="announcement">Envío demo gratuito en bundles · Fórmula sin azúcar añadido</div>
+  <header>
+    <nav class="wrap" aria-label="Navegación principal">
+      <div class="nav-links" id="navLinks">
+        <a href="#formula">Fórmula</a><a href="#ritual">Ritual</a><a href="#resultados">Expectativas</a>
+      </div>
+      <a class="logo" href="#inicio" aria-label="LUMERA, volver al inicio">LUMERA</a>
+      <div class="nav-actions">
+        <button class="btn btn--ghost" data-scroll-shop>Ver planes</button>
+        <button class="cart-btn" id="openCart" aria-label="Abrir carrito, 0 productos">Bolsa <span class="cart-count" id="cartCount">0</span></button>
+        <button class="menu-btn" id="menuBtn" aria-controls="navLinks" aria-expanded="false" aria-label="Abrir menú">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Belleza desde lo cotidiano</div>
+          <h1>Tu brillo no se improvisa. Se <em>cultiva.</em></h1>
+          <p class="hero-lead">Péptidos de colágeno, vitamina C y ácido hialurónico en un ritual diario de sabor cítrico limpio, pensado para acompañar tu piel y tu bienestar.</p>
+          <div class="hero-actions">
+            <button class="btn btn--acid" data-add="ritual-30">Empezar mi ritual <span class="icon-arrow">→</span></button>
+            <a class="btn btn--ghost" href="#formula">Explorar la fórmula</a>
+          </div>
+          <p class="hero-note">Complemento alimenticio · No sustituye una dieta variada ni un estilo de vida saludable.</p>
+        </div>
+        <div class="product-stage" aria-label="Visual ilustrado del producto LUMERA Daily Collagen">
+          <div class="orb"></div>
+          <div class="orbit-text" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="circle" d="M50,8 a42,42 0 1,1 0,84 a42,42 0 1,1 0,-84"/></defs><text><textPath href="#circle">PÉPTIDOS DE COLÁGENO · VITAMINA C · RITUAL DIARIO · </textPath></text></svg></div>
+          <div class="jar" aria-hidden="true"><div class="jar-lid"></div><div class="jar-body"><div class="label"><b>LUMERA</b><span>daily collagen</span><small>Radiance blend<br>270 g · 30 rituales</small></div></div></div>
+          <div class="floating-card one"><i></i> 9 g de péptidos</div>
+          <div class="floating-card two"><i></i> Cítrico suave</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Fórmula trazable</span><span>Sin azúcar añadido</span><span>Rutina de 30 días</span><span>Sabor cítrico suave</span><span>Fórmula trazable</span><span>Sin azúcar añadido</span><span>Rutina de 30 días</span><span>Sabor cítrico suave</span></div></div>
+
+    <section class="benefits" id="beneficios">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Belleza con perspectiva</div><div><h2>Pequeños gestos.<br>Una rutina que suma.</h2><p>LUMERA no promete milagros. Reúne nutrientes seleccionados para complementar hábitos que ya cuidan de ti: alimentación, descanso, movimiento y protección solar.</p></div></div>
+        <div class="benefit-grid">
+          <article class="benefit"><span class="benefit-num">01</span><div><h3>Piel acompañada</h3><p>La vitamina C contribuye a la formación normal de colágeno para el funcionamiento normal de la piel.</p></div></article>
+          <article class="benefit"><span class="benefit-num">02</span><div><h3>Rutina sencilla</h3><p>Una medida al día, soluble en agua fría o templada. Sin convertir tu mañana en un proyecto.</p></div></article>
+          <article class="benefit"><span class="benefit-num">03</span><div><h3>Bienestar integral</h3><p>Proteína de colágeno y micronutrientes dentro de una fórmula diseñada para encajar, no para sustituir.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="formula" id="formula">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Lo que hay dentro</div><div><h2>Transparencia que también se nota.</h2><p>Sin mezclas misteriosas ni lenguaje que confunda. Cada porción declara sus ingredientes clave y su función nutricional con claridad.</p></div></div>
+        <div class="formula-grid">
+          <div class="formula-visual" aria-hidden="true"></div>
+          <div>
+            <div class="ingredients">
+              <div class="ingredient"><span>9 g</span><div><strong>Péptidos de colágeno hidrolizado</strong><p>Proteína bovina hidrolizada, seleccionada por su solubilidad.</p></div><b>01</b></div>
+              <div class="ingredient"><span>80 mg</span><div><strong>Vitamina C</strong><p>Contribuye a la formación normal de colágeno para la piel.</p></div><b>02</b></div>
+              <div class="ingredient"><span>100 mg</span><div><strong>Ácido hialurónico</strong><p>Integrado como parte de la mezcla diaria de belleza.</p></div><b>03</b></div>
+              <div class="ingredient"><span>50 μg</span><div><strong>Biotina</strong><p>Contribuye al mantenimiento del cabello y la piel en condiciones normales.</p></div><b>04</b></div>
+            </div>
+            <div class="transparency"><span class="pill">Sin gluten*</span><span class="pill">Sin azúcar añadido</span><span class="pill">Aroma natural</span><span class="pill">Lote trazable</span></div>
+            <p style="font-size:.68rem;color:#9fb0ab;margin-top:14px">*Formulado sin ingredientes con gluten. Esta afirmación requeriría certificación analítica en un producto comercial real.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ritual" id="ritual">
+      <div class="wrap ritual-layout">
+        <div class="ritual-sticky"><div class="eyebrow">El ritual LUMERA</div><h2>Un minuto para ti.</h2><p>La mejor rutina es la que realmente puedes mantener. Haz de LUMERA una pausa breve, no otra obligación.</p></div>
+        <div class="steps">
+          <article class="step"><div><h3>Sirve una medida</h3><p>Añade una medida rasa a 250 ml de agua. Respeta siempre la dosis indicada en el envase.</p></div></article>
+          <article class="step"><div><h3>Mezcla a tu manera</h3><p>Agita en frío para un acabado ligero o mezcla en una bebida templada. No hace falta batidora.</p></div></article>
+          <article class="step"><div><h3>Hazlo constante</h3><p>Elige un momento fácil de recordar: junto al desayuno, después de entrenar o en tu pausa de la tarde.</p></div></article>
+          <article class="step"><div><h3>Suma hábitos reales</h3><p>Acompáñalo con hidratación, alimentación variada, descanso y protección solar diaria.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="expectations" id="resultados">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Expectativas honestas</div><div><h2>La constancia tiene su propio ritmo.</h2><p>Cada persona es distinta. Esta guía describe cómo puede sentirse el ritual, no resultados garantizados ni plazos clínicos.</p></div></div>
+        <div class="timeline">
+          <article class="time-card"><span class="pill">Días 1–7</span><div><div class="when">Empieza fácil.</div><p>Encuentras el momento del día y ajustas la mezcla a tu gusto. El primer resultado es crear el hábito.</p></div></article>
+          <article class="time-card"><span class="pill">Semanas 2–4</span><div><div class="when">Gana ritmo.</div><p>La rutina puede sentirse más automática. Algunas personas perciben cambios sutiles; otras, todavía no.</p></div></article>
+          <article class="time-card"><span class="pill">Desde 8 semanas</span><div><div class="when">Evalúa con calma.</div><p>Observa cómo encaja en tu bienestar general y decide si merece un lugar estable en tu rutina.</p></div></article>
+        </div>
+        <p class="expectation-note">Los complementos alimenticios no sustituyen una dieta equilibrada. Los efectos percibidos pueden variar. Si estás embarazada, en lactancia, tomas medicación o tienes alguna condición de salud, consulta a un profesional sanitario antes de usarlo.</p>
+      </div>
+    </section>
+
+    <section class="voices" aria-labelledby="voces-title">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">Voces de la comunidad</div><span class="demo-flag">Testimonios ficticios · Demo</span></div><div><h2 id="voces-title">Así podría sentirse el ritual.</h2><p>Perfiles y comentarios creados únicamente para mostrar el diseño. No representan clientes ni resultados reales.</p></div></div>
+        <div class="voice-grid">
+          <article class="quote"><blockquote>“Me gusta porque no ocupa espacio mental: lo mezclo, lo disfruto y sigo con mi día.”</blockquote><footer><span class="avatar">AV</span><div><strong>Alba V. — perfil ficticio</strong><small>Directora de arte, 29</small></div></footer></article>
+          <article class="quote"><blockquote>“El sabor cítrico se siente limpio y la información es fácil de entender.”</blockquote><footer><span class="avatar">MC</span><div><strong>Mara C. — perfil ficticio</strong><small>Diseñadora, 26</small></div></footer></article>
+          <article class="quote"><blockquote>“Lo convertí en mi pausa de media tarde. Ese hábito ya vale mucho.”</blockquote><footer><span class="avatar">LN</span><div><strong>Leo N. — perfil ficticio</strong><small>Creador, 31</small></div></footer></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="shop" id="planes">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Elige tu ritmo</div><div><h2>Una fórmula.<br>Tres formas de empezar.</h2><p>Precios y productos simulados para esta demo. El carrito no procesa pagos ni recopila datos personales.</p></div></div>
+        <div class="shop-grid">
+          <article class="product-card"><div class="card-art" style="--accent:#ffb477"><div class="mini-jar">LUMERA<br>DAILY</div></div><div class="card-info"><h3>Descubrimiento</h3><p>15 porciones · Para conocer sabor y ritual sin compromiso.</p><div class="price-row"><span class="price">24 €</span><span class="save">15 días</span></div><button class="btn btn--ghost" data-add="discovery">Añadir a la bolsa</button></div></article>
+          <article class="product-card featured"><span class="badge">Más elegido</span><div class="card-art" style="--accent:#d8ff68"><div class="mini-jar two">LUMERA<br>DAILY</div></div><div class="card-info"><h3>Ritual 30</h3><p>30 porciones + vaso mezclador · Tu mes, bien acompañado.</p><div class="price-row"><span class="price">42 € <small>/ bundle</small></span><span class="save">Ahorra 12 €</span></div><button class="btn btn--acid" data-add="ritual-30">Añadir a la bolsa</button></div></article>
+          <article class="product-card"><div class="card-art" style="--accent:#a4dad0"><div class="mini-jar three">LUMERA<br>DAILY</div></div><div class="card-info"><h3>Ritual 90</h3><p>90 porciones · Tres envases para sostener la constancia.</p><div class="price-row"><span class="price">108 €</span><span class="save">Ahorra 27 €</span></div><button class="btn btn--ghost" data-add="ritual-90">Añadir a la bolsa</button></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap faq-layout">
+        <div class="faq-intro"><div class="eyebrow">Preguntas claras</div><h2>Antes de mezclar.</h2><p>Lo importante, sin letra pequeña. En un lanzamiento real, el etiquetado final y las recomendaciones se adaptarían a la normativa aplicable.</p></div>
+        <div>
+          <details><summary>¿Cuándo debería tomar LUMERA?</summary><p>Cuando te resulte más fácil mantener el hábito. La hora no es tan importante como respetar la dosis y seguir una rutina constante.</p></details>
+          <details><summary>¿Es apto para dietas vegetarianas o veganas?</summary><p>No. Esta fórmula demo utiliza colágeno de origen bovino, por lo que no es vegetariana ni vegana.</p></details>
+          <details><summary>¿Puedo mezclarlo con café o bebidas calientes?</summary><p>La fórmula está pensada para agua fría o bebidas templadas. Sigue siempre las instrucciones definitivas del envase de un producto real.</p></details>
+          <details><summary>¿Cuándo notaré resultados?</summary><p>No existe un plazo universal ni resultados garantizados. La percepción cambia según la persona, sus hábitos y su constancia.</p></details>
+          <details><summary>¿Tiene contraindicaciones?</summary><p>En un producto real deberías revisar alérgenos y etiqueta. Si estás embarazada, en lactancia, tomas medicación o tienes dudas de salud, consulta a un profesional sanitario.</p></details>
+          <details><summary>¿La compra es real?</summary><p>No. Esta es una demostración visual: los productos, precios, testimonios y carrito son ficticios y no se procesa ningún pago.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="wrap"><div class="cta-panel"><h2>Tu ritual de belleza puede empezar pequeño.</h2><button class="btn btn--light" data-add="ritual-30">Probar Ritual 30 <span class="icon-arrow">→</span></button></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top"><div class="footer-brand"><a class="logo" href="#inicio">LUMERA</a><p>Nutrición estética con intención, transparencia y un poco más de luz.</p><span class="demo-flag">Marca ficticia · Proyecto demo</span></div><div class="footer-col"><strong>Descubrir</strong><a href="#formula">Fórmula</a><a href="#ritual">Ritual</a><a href="#planes">Planes</a></div><div class="footer-col"><strong>Información</strong><a href="#resultados">Expectativas</a><a href="#faq">Preguntas frecuentes</a><a href="#beneficios">Bienestar responsable</a></div></div>
+      <div class="footer-bottom"><span>© 2026 LUMERA. Concepto ficticio para demostración.</span><span>No es consejo médico · No hay ventas reales en esta página</span></div>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart" id="cart" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
+    <div class="cart-head"><h2 id="cartTitle">Tu bolsa demo</h2><button class="close-cart" id="closeCart" aria-label="Cerrar carrito">×</button></div>
+    <div class="cart-items" id="cartItems"><div class="cart-empty">Tu bolsa está lista para un nuevo ritual.</div></div>
+    <div class="cart-foot"><div class="subtotal"><span>Subtotal</span><span id="subtotal">0 €</span></div><button class="btn btn--acid" id="checkout">Continuar — demo</button><p class="cart-demo">Carrito demostrativo. No se solicitan datos ni se procesan pagos.</p></div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      const products = {
+        'discovery': { name: 'Descubrimiento', price: 24, note: '15 porciones' },
+        'ritual-30': { name: 'Ritual 30', price: 42, note: '30 porciones + vaso' },
+        'ritual-90': { name: 'Ritual 90', price: 108, note: '90 porciones' }
+      };
+      const state = { items: [] };
+      const cart = document.getElementById('cart');
+      const overlay = document.getElementById('overlay');
+      const cartItems = document.getElementById('cartItems');
+      const cartCount = document.getElementById('cartCount');
+      const openButton = document.getElementById('openCart');
+      const closeButton = document.getElementById('closeCart');
+      const toast = document.getElementById('toast');
+      let previousFocus = null;
+
+      function money(value) { return new Intl.NumberFormat('es-ES', { style:'currency', currency:'EUR', maximumFractionDigits:0 }).format(value); }
+      function showToast(message) { toast.textContent = message; toast.classList.add('show'); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => toast.classList.remove('show'), 2200); }
+      function openCart() { previousFocus = document.activeElement; cart.classList.add('open'); overlay.classList.add('active'); cart.setAttribute('aria-hidden','false'); document.body.classList.add('cart-open'); closeButton.focus(); }
+      function closeCart() { cart.classList.remove('open'); overlay.classList.remove('active'); cart.setAttribute('aria-hidden','true'); document.body.classList.remove('cart-open'); if (previousFocus) previousFocus.focus(); }
+      function render() {
+        cartCount.textContent = state.items.length;
+        openButton.setAttribute('aria-label', `Abrir carrito, ${state.items.length} productos`);
+        if (!state.items.length) cartItems.innerHTML = '<div class="cart-empty">Tu bolsa está lista para un nuevo ritual.</div>';
+        else cartItems.innerHTML = state.items.map((id,index) => { const p=products[id]; return `<div class="cart-item"><div class="cart-thumb">LUMERA</div><div><h3>${p.name}</h3><p>${p.note} · ${money(p.price)}</p></div><button class="remove" data-remove="${index}" aria-label="Quitar ${p.name}">Quitar</button></div>`; }).join('');
+        document.getElementById('subtotal').textContent = money(state.items.reduce((sum,id)=>sum+products[id].price,0));
+      }
+      document.querySelectorAll('[data-add]').forEach(button => button.addEventListener('click', () => { const id=button.dataset.add; state.items.push(id); render(); showToast(`${products[id].name} añadido a tu bolsa`); openCart(); }));
+      cartItems.addEventListener('click', event => { const button=event.target.closest('[data-remove]'); if(!button) return; const removed=state.items.splice(Number(button.dataset.remove),1)[0]; render(); showToast(`${products[removed].name} eliminado`); });
+      openButton.addEventListener('click', openCart); closeButton.addEventListener('click', closeCart); overlay.addEventListener('click', closeCart);
+      document.addEventListener('keydown', event => { if(event.key==='Escape' && cart.classList.contains('open')) closeCart(); if(event.key==='Tab' && cart.classList.contains('open')) { const focusable=[...cart.querySelectorAll('button:not([disabled])')]; const first=focusable[0], last=focusable[focusable.length-1]; if(event.shiftKey && document.activeElement===first){event.preventDefault();last.focus();} else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first.focus();} } });
+      document.getElementById('checkout').addEventListener('click', () => showToast(state.items.length ? 'Demo completa: el pago no está habilitado' : 'Añade un ritual para probar el carrito'));
+      document.querySelectorAll('[data-scroll-shop]').forEach(btn => btn.addEventListener('click',()=>document.getElementById('planes').scrollIntoView({behavior:'smooth'})));
+      const menuBtn=document.getElementById('menuBtn'), navLinks=document.getElementById('navLinks');
+      menuBtn.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));menuBtn.textContent=open?'×':'☰';});
+      navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{navLinks.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰';}));
+      render();
+    })();
+  </script>
+</body>
+</html>
