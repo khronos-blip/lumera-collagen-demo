@@ -1,7 +1,7 @@
 (() => {
 'use strict';
 const products={
-'edition-15':{id:'edition-15',name:'The Prelude',note:'1 compact jar · 15 servings',price:32,image:'assets/prelude-640.webp'},
+'edition-15':{id:'edition-15',name:'The Prelude',note:'1 compact jar · 15 servings',price:32,image:'assets/lumera-prelude-640.webp'},
 'edition-30':{id:'edition-30',name:'The Full Light',note:'1 jar · 30 servings + ribbed glass',price:58,image:'assets/full-light-640.webp'},
 'edition-90':{id:'edition-90',name:'The Season',note:'3 jars · 90 servings total',price:148,image:'assets/season-640.webp'}
 };
