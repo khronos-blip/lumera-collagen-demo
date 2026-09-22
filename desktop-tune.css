@@ -1,0 +1,31 @@
+@media(min-width:1001px){
+  .nav .wordmark{font-size:34px}
+  .nav .links{font-size:14px;gap:30px;letter-spacing:.06em}
+  .bag-button{font-size:14px}
+  .demo{font-size:11px;padding:8px 15px}
+  .editorial-title .kicker{font-size:12px}
+  .editorial-intro>p{font-size:18px}
+  .editorial-intro .button{font-size:14px}
+  .atelier-heading .kicker,.closing .kicker{font-size:13px}
+  .atelier-heading>p{font-size:18px}
+  .signature-copy>p{font-size:21px}
+  .signature-copy dl{font-size:16px}
+  .signature-copy .button{font-size:14px;min-height:59px}
+  .companion .edition-tag{font-size:12px}
+  .companion p{font-size:16px}
+  .edition-link{font-size:14px}
+  .step p{font-size:15px}
+  .technical>summary,.purchase-faq summary{font-size:16px}
+  .purchase-faq details p{font-size:15px}
+  .footer-bottom{font-size:13px}
+}
+.signature-copy h3 a:hover,.companion h3 a:hover{color:var(--copper)}
+.edition-detail{display:inline-flex;align-items:center;min-height:42px;margin:0 0 17px;border-bottom:1px solid var(--copper);color:var(--copper);font-size:13px;font-weight:750}
+.companion .edition-detail{min-height:34px;margin:0 0 7px}
+.mobile-about{display:none}
+@media(max-width:680px){
+  .nav{grid-template-columns:1fr auto auto;gap:15px}
+  .mobile-about{display:block;grid-column:2;grid-row:1;font-size:12px;font-weight:800;text-transform:uppercase}
+  .nav .bag-button{grid-column:3}
+  .edition-detail{font-size:13px}
+}

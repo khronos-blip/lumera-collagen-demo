@@ -7,4 +7,9 @@ const products={
 };
 const cart=createDemoCart({overlay:'#overlay',trigger:'#openCart',list:'#cartItems',total:'#subtotal',badge:'#cartCount',currency:'EUR',noun:'bag',openClass:'open',overlayClass:'active',bodyClass:'cart-open'});
 document.querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',()=>cart.add(products[b.dataset.add])));
+const requested=new URLSearchParams(location.search).get('add');
+if(Object.hasOwn(products,requested)){
+  history.replaceState(null,'',location.pathname+'#editions');
+  cart.add(products[requested]);
+}
 })();
