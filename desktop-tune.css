@@ -56,5 +56,8 @@
 .atelier-heading h2,.signature-copy h3,.companion h3,.ritual-title h2,.closing h2{line-height:1.12;overflow:visible}
 .morning-panorama figcaption{font-size:11px;letter-spacing:.04em;flex-wrap:wrap}
 .atelier-heading>p{line-height:1.65}
+.signature-edition figure img{aspect-ratio:auto;object-fit:contain}
+.companion img{object-fit:contain}
+@media(max-width:680px){.step p{font-size:15px;line-height:1.7}.companion p{font-size:14px}.purchase-faq summary{font-size:16px;line-height:1.55}.purchase-faq details p{font-size:15px}.atelier-heading>p{font-size:15px}.footer-col a{font-size:14px}}
 @media(min-width:1001px){.editorial-hero{min-height:calc(100svh - 122px);padding:80px 0 90px!important}.edition-atelier{padding-top:64px}.editorial-intro>p{font-size:19px}.editorial-intro .button{font-size:14px}.step p{font-size:17px}.technical>summary,.purchase-faq summary{font-size:18px;line-height:1.55}.purchase-faq details p{font-size:17px;line-height:1.75}}
 @media(max-width:680px){.editorial-hero h1{line-height:1.08}.morning-panorama figcaption{font-size:10px}.morning-panorama figcaption span:last-child{text-align:left}.atelier-heading h2{line-height:1.12}}
