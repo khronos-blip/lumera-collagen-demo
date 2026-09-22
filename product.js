@@ -23,4 +23,5 @@
   add.href='index.html?add=edition-'+selected+'#editions';
   add.textContent='Add to bag · '+edition.price+' ↗';
   document.querySelector('[data-related="'+selected+'"]').setAttribute('aria-current','page');
+  setDetailProduct({id:'edition-'+selected,name:edition.name,note:edition.format,price:Number(edition.price.replace('€','')),image:'assets/'+edition.image+'-640.webp'});
 })();
