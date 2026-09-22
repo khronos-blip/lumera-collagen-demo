@@ -29,3 +29,5 @@
   .nav .bag-button{grid-column:3}
   .edition-detail{font-size:13px}
 }
+/* Visibility and inertness change immediately so keyboard focus can enter. */
+.cart{transition-property:transform}
