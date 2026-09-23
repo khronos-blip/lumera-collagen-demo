@@ -26,11 +26,11 @@ html[data-brand="lumera"] .detail-header{grid-template-columns:minmax(0,1fr) aut
  html[data-brand="nox"] .detail-bag{margin-left:auto}
  html[data-brand="vyra"] .detail-header nav{order:3;width:100%;justify-content:flex-start}
  html[data-brand="vyra"] .detail-bag{margin-left:auto}
- html[data-brand="lumera"] .detail-header{grid-template-columns:1fr auto;gap:6px 16px}
- html[data-brand="lumera"] .detail-header .wordmark{grid-column:1;grid-row:1}
- html[data-brand="lumera"] .detail-header nav:first-child{grid-column:1/-1;grid-row:2;justify-content:flex-start}
- html[data-brand="lumera"] .detail-header nav:last-of-type{display:none}
- html[data-brand="lumera"] .detail-bag{grid-column:2;grid-row:1}
+ html[data-brand="lumera"] .detail-header{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px 8px}
+ html[data-brand="lumera"] .detail-header .wordmark{grid-column:1/4;grid-row:1;justify-self:start}
+ html[data-brand="lumera"] .detail-header nav:first-child,html[data-brand="lumera"] .detail-header nav:last-of-type{display:contents}
+ html[data-brand="lumera"] .detail-header nav a{grid-row:2;font-size:14px;justify-self:start}
+ html[data-brand="lumera"] .detail-bag{grid-column:4;grid-row:1;justify-self:end}
  .detail-crumb{padding-top:12px;font-size:12px}.product-hero{padding-top:16px;gap:22px}
  .product-image,.product-photo{grid-row:1;margin:0;order:0}.product-copy{order:1}
  .product-image img,.product-photo img{max-height:350px;object-fit:contain}
